@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>6월 제주 여행</title>
+
+<style>
+
+:root{
+--ocean:#0ea5e9;
+--deep:#0369a1;
+--sand:#fef3c7;
+--mint:#ccfbf1;
+--white:#ffffff;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:"Malgun Gothic",sans-serif;
+background:#f0f9ff;
+color:#0f172a;
+line-height:1.6;
+}
+
+.hero{
+background:
+linear-gradient(
+rgba(0,0,0,.35),
+rgba(0,0,0,.35)
+),
+url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+background-size:cover;
+background-position:center;
+color:white;
+text-align:center;
+padding:80px 20px;
+}
+
+.hero h1{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:white;
+border-radius:20px;
+padding:20px;
+margin-bottom:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.progress{
+height:24px;
+background:#dbeafe;
+border-radius:20px;
+overflow:hidden;
+margin-top:10px;
+}
+
+.progress-fill{
+height:100%;
+width:0%;
+background:linear-gradient(
+90deg,
+#38bdf8,
+#0ea5e9
+);
+transition:.3s;
+}
+
+.place{
+padding:15px;
+border-left:6px solid var(--ocean);
+background:#f8fafc;
+border-radius:12px;
+margin-top:12px;
+}
+
+.place h3{
+margin-bottom:5px;
+}
+
+.check{
+margin-top:10px;
+font-size:18px;
+}
+
+textarea{
+width:100%;
+height:140px;
+padding:15px;
+border-radius:12px;
+border:1px solid #cbd5e1;
+font-size:16px;
+}
+
+.footer{
+text-align:center;
+padding:40px;
+color:#64748b;
+}
+
+.badge{
+background:#e0f2fe;
+color:#0369a1;
+padding:5px 10px;
+border-radius:20px;
+font-size:14px;
+display:inline-block;
+margin-bottom:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+<h1>🌴 6월 제주 여행</h1>
+<p>바다 · 수국 · 역사 · 가족</p>
+</section>
+
+<div class="container">
+
+<div class="card">
+
+<div class="badge">
+여행 진행률
+</div>
+
+<h2 id="progressText">
+0 / 5 완료
+</h2>
+
+<div class="progress">
+<div id="progressFill" class="progress-fill"></div>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>🌊 꼭 가볼 장소</h2>
+
+<div class="place">
+<h3>함덕 서우봉</h3>
+<p>제주 동부 대표 바다</p>
+<label class="check">
+<input type="checkbox" class="visit">
+방문 완료
+</label>
+</div>
+
+<div class="place">
+<h3>광치기해변</h3>
+<p>성산일출봉 최고의 뷰</p>
+<label class="check">
+<input type="checkbox" class="visit">
+방문 완료
+</label>
+</div>
+
+<div class="place">
+<h3>휴애리 수국축제</h3>
+<p>6월 제주 최고의 수국 명소</p>
+<label class="check">
+<input type="checkbox" class="visit">
+방문 완료
+</label>
+</div>
+
+<div class="place">
+<h3>수월봉</h3>
+<p>제주 서쪽 바다 절경</p>
+<label class="check">
+<input type="checkbox" class="visit">
+방문 완료
+</label>
+</div>
+
+<div class="place">
+<h3>한담해안산책로</h3>
+<p>애월 바다 산책</p>
+<label class="check">
+<input type="checkbox" class="visit">
+방문 완료
+</label>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>📝 여행 메모</h2>
+
+<p>
+여행 중 변경사항, 맛집, 부모님 반응 등을 기록하세요.
+</p>
+
+<br>
+
+<textarea
+id="memo"
+placeholder="예) 광치기해변이 이번 여행 최고였다."
+></textarea>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+<h3>🌴 6월 제주 여행</h3>
+
+<p>
+체크와 메모는 자동 저장됩니다.
+</p>
+
+</div>
+
+<script>
+
+const checks =
+document.querySelectorAll(".visit");
+
+const fill =
+document.getElementById("progressFill");
+
+const text =
+document.getElementById("progressText");
+
+function updateProgress(){
+
+const total = checks.length;
+
+const done =
+[...checks].filter(
+c => c.checked
+).length;
+
+const percent =
+(done / total) * 100;
+
+fill.style.width =
+percent + "%";
+
+text.innerHTML =
+done + " / " + total + " 완료";
+
+localStorage.setItem(
+"jejuChecks",
+JSON.stringify(
+[...checks].map(
+c => c.checked
+)
+)
+);
+
+}
+
+const saved =
+JSON.parse(
+localStorage.getItem(
+"jejuChecks"
+)
+);
+
+if(saved){
+
+checks.forEach((c,i)=>{
+
+if(saved[i]!==undefined){
+
+c.checked = saved[i];
+
+}
+
+});
+
+}
+
+checks.forEach(c=>{
+
+c.addEventListener(
+"change",
+updateProgress
+);
+
+});
+
+updateProgress();
+
+const memo =
+document.getElementById("memo");
+
+memo.value =
+localStorage.getItem(
+"jejuMemo"
+) || "";
+
+memo.addEventListener(
+"input",
+()=>{
+
+localStorage.setItem(
+"jejuMemo",
+memo.value
+);
+
+}
+);
+
+</script>
+
+</body>
+</html>
