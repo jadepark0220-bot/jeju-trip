@@ -3,128 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>6월 제주 여행</title>
 
 <style>
 
 :root{
---ocean:#0ea5e9;
---deep:#0369a1;
---sand:#fef3c7;
---mint:#ccfbf1;
---white:#ffffff;
+  --ocean:#0891b2;
+  --bg:#f0f9ff;
+  --card:#ffffff;
+  --text:#0f172a;
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-font-family:"Malgun Gothic",sans-serif;
-background:#f0f9ff;
-color:#0f172a;
-line-height:1.6;
+  font-family:system-ui,'Malgun Gothic',sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
 
+/* HERO */
 .hero{
-background:
-linear-gradient(
-rgba(0,0,0,.35),
-rgba(0,0,0,.35)
-),
-url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
-background-size:cover;
-background-position:center;
-color:white;
-text-align:center;
-padding:80px 20px;
+  height:320px;
+  background:
+    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
 }
 
-.hero h1{
-font-size:42px;
-margin-bottom:10px;
+.hero h1{font-size:42px;}
+.hero p{opacity:.9;margin-top:6px;}
+
+/* NAV TABS */
+.tabs{
+  display:flex;
+  overflow-x:auto;
+  gap:8px;
+  padding:12px;
+  background:#fff;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
-.hero p{
-font-size:20px;
+.tab{
+  flex:0 0 auto;
+  padding:10px 14px;
+  border-radius:999px;
+  background:#e0f2fe;
+  cursor:pointer;
+  font-weight:600;
 }
 
+.tab.active{
+  background:var(--ocean);
+  color:white;
+}
+
+/* LAYOUT */
 .container{
-max-width:900px;
-margin:auto;
-padding:20px;
+  max-width:900px;
+  margin:auto;
+  padding:16px;
 }
 
+/* CARD */
 .card{
-background:white;
-border-radius:20px;
-padding:20px;
-margin-bottom:20px;
-box-shadow:0 5px 15px rgba(0,0,0,.08);
+  background:var(--card);
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:14px;
+  box-shadow:0 4px 14px rgba(0,0,0,.06);
 }
+
+/* PLACE */
+.place{
+  background:#f8fafc;
+  border-left:5px solid var(--ocean);
+  padding:14px;
+  border-radius:12px;
+  margin-top:12px;
+}
+
+.place-image{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:14px;
+  margin-bottom:10px;
+}
+
+.memo{
+  width:100%;
+  min-height:80px;
+  margin-top:10px;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #cbd5e1;
+}
+
+/* BUTTON LINKS */
+a{
+  text-decoration:none;
+  color:var(--ocean);
+  font-weight:600;
+}
+
+/* HIDDEN DAYS */
+.day{display:none;}
+.day.active{display:block;}
 
 .progress{
-height:24px;
-background:#dbeafe;
-border-radius:20px;
-overflow:hidden;
-margin-top:10px;
+  height:14px;
+  background:#e0f2fe;
+  border-radius:999px;
+  overflow:hidden;
 }
 
-.progress-fill{
-height:100%;
-width:0%;
-background:linear-gradient(
-90deg,
-#38bdf8,
-#0ea5e9
-);
-transition:.3s;
-}
-
-.place{
-padding:15px;
-border-left:6px solid var(--ocean);
-background:#f8fafc;
-border-radius:12px;
-margin-top:12px;
-}
-
-.place h3{
-margin-bottom:5px;
-}
-
-.check{
-margin-top:10px;
-font-size:18px;
-}
-
-textarea{
-width:100%;
-height:140px;
-padding:15px;
-border-radius:12px;
-border:1px solid #cbd5e1;
-font-size:16px;
-}
-
-.footer{
-text-align:center;
-padding:40px;
-color:#64748b;
-}
-
-.badge{
-background:#e0f2fe;
-color:#0369a1;
-padding:5px 10px;
-border-radius:20px;
-font-size:14px;
-display:inline-block;
-margin-bottom:10px;
+.fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#38bdf8,#0891b2);
 }
 
 </style>
@@ -132,200 +137,198 @@ margin-bottom:10px;
 
 <body>
 
-<section class="hero">
-<h1>🌴 6월 제주 여행</h1>
-<p>바다 · 수국 · 역사 · 가족</p>
-</section>
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>🌴 6월 제주 여행</h1>
+    <p>2026.06.14 ~ 06.19 · 바다 · 수국 · 역사</p>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="showDay(1)">DAY1</div>
+  <div class="tab" onclick="showDay(2)">DAY2</div>
+  <div class="tab" onclick="showDay(3)">DAY3</div>
+  <div class="tab" onclick="showDay(4)">DAY4</div>
+  <div class="tab" onclick="showDay(5)">DAY5</div>
+  <div class="tab" onclick="showDay(6)">DAY6</div>
+</div>
 
 <div class="container">
 
+<!-- PROGRESS -->
 <div class="card">
-
-<div class="badge">
-여행 진행률
+  <h3 id="progressText">0 / 0 방문</h3>
+  <div class="progress">
+    <div id="fill" class="fill"></div>
+  </div>
 </div>
 
-<h2 id="progressText">
-0 / 5 완료
-</h2>
+<!-- DAY 2 -->
+<div class="day active" data-day="2">
 
-<div class="progress">
-<div id="progressFill" class="progress-fill"></div>
+<h2>DAY2 🌊</h2>
+
+<div class="place">
+
+<img class="place-image"
+src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+
+<h3>
+<a href="https://map.kakao.com/link/search/제주4.3평화공원" target="_blank">
+제주 4·3 평화공원
+</a>
+</h3>
+
+<label>
+<input type="checkbox" class="check"> 방문 완료
+</label>
+
+<textarea class="memo" placeholder="느낀 점"></textarea>
+
+</div>
+
+<div class="place">
+
+<img class="place-image"
+src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21">
+
+<h3>
+<a href="https://map.kakao.com/link/search/함덕해수욕장" target="_blank">
+함덕 서우봉
+</a>
+</h3>
+
+<label>
+<input type="checkbox" class="check"> 방문 완료
+</label>
+
+<textarea class="memo"></textarea>
+
 </div>
 
 </div>
 
+<!-- DAY 3 -->
+<div class="day" data-day="3">
+<h2>DAY3 🌺</h2>
+
+<div class="place">
+
+<img class="place-image"
+src="https://images.unsplash.com/photo-1520975954732-35dd22299614">
+
+<h3>
+<a href="https://map.kakao.com/link/search/종달리수국길" target="_blank">
+종달리 수국길
+</a>
+</h3>
+
+<label><input type="checkbox" class="check"> 방문 완료</label>
+<textarea class="memo"></textarea>
+
+</div>
+
+</div>
+
+<!-- COST -->
 <div class="card">
+<h3>💰 경비</h3>
 
-<h2>🌊 꼭 가볼 장소</h2>
+식비 <input id="food"><br><br>
+입장료 <input id="ticket"><br><br>
+주유비 <input id="fuel"><br><br>
 
-<div class="place">
-<h3>함덕 서우봉</h3>
-<p>제주 동부 대표 바다</p>
-<label class="check">
-<input type="checkbox" class="visit">
-방문 완료
-</label>
+<h3 id="total">총 0원</h3>
 </div>
-
-<div class="place">
-<h3>광치기해변</h3>
-<p>성산일출봉 최고의 뷰</p>
-<label class="check">
-<input type="checkbox" class="visit">
-방문 완료
-</label>
-</div>
-
-<div class="place">
-<h3>휴애리 수국축제</h3>
-<p>6월 제주 최고의 수국 명소</p>
-<label class="check">
-<input type="checkbox" class="visit">
-방문 완료
-</label>
-</div>
-
-<div class="place">
-<h3>수월봉</h3>
-<p>제주 서쪽 바다 절경</p>
-<label class="check">
-<input type="checkbox" class="visit">
-방문 완료
-</label>
-</div>
-
-<div class="place">
-<h3>한담해안산책로</h3>
-<p>애월 바다 산책</p>
-<label class="check">
-<input type="checkbox" class="visit">
-방문 완료
-</label>
-</div>
-
-</div>
-
-<div class="card">
-
-<h2>📝 여행 메모</h2>
-
-<p>
-여행 중 변경사항, 맛집, 부모님 반응 등을 기록하세요.
-</p>
-
-<br>
-
-<textarea
-id="memo"
-placeholder="예) 광치기해변이 이번 여행 최고였다."
-></textarea>
-
-</div>
-
-</div>
-
-<div class="footer">
-
-<h3>🌴 6월 제주 여행</h3>
-
-<p>
-체크와 메모는 자동 저장됩니다.
-</p>
 
 </div>
 
 <script>
 
-const checks =
-document.querySelectorAll(".visit");
+/* ---------- TAB ---------- */
+function showDay(n){
+  document.querySelectorAll(".day").forEach(d=>{
+    d.classList.remove("active");
+    if(d.dataset.day == n) d.classList.add("active");
+  });
 
-const fill =
-document.getElementById("progressFill");
+  document.querySelectorAll(".tab").forEach(t=>{
+    t.classList.remove("active");
+  });
 
-const text =
-document.getElementById("progressText");
-
-function updateProgress(){
-
-const total = checks.length;
-
-const done =
-[...checks].filter(
-c => c.checked
-).length;
-
-const percent =
-(done / total) * 100;
-
-fill.style.width =
-percent + "%";
-
-text.innerHTML =
-done + " / " + total + " 완료";
-
-localStorage.setItem(
-"jejuChecks",
-JSON.stringify(
-[...checks].map(
-c => c.checked
-)
-)
-);
-
+  document.querySelectorAll(".tab")[n-1].classList.add("active");
 }
 
-const saved =
-JSON.parse(
-localStorage.getItem(
-"jejuChecks"
-)
-);
+/* ---------- CHECK ---------- */
+const checks = document.querySelectorAll(".check");
+const fill = document.getElementById("fill");
+const text = document.getElementById("progressText");
 
-if(saved){
+function update(){
+
+  const total = checks.length;
+  const done = [...checks].filter(c=>c.checked).length;
+
+  fill.style.width = (done/total)*100 + "%";
+  text.textContent = `${done} / ${total} 방문`;
+
+  localStorage.setItem("jeju-checks",
+    JSON.stringify([...checks].map(c=>c.checked))
+  );
+}
+
+const saved = JSON.parse(localStorage.getItem("jeju-checks")||"[]");
 
 checks.forEach((c,i)=>{
-
-if(saved[i]!==undefined){
-
-c.checked = saved[i];
-
-}
-
+  c.checked = saved[i] || false;
+  c.addEventListener("change",update);
 });
 
-}
+update();
 
-checks.forEach(c=>{
-
-c.addEventListener(
-"change",
-updateProgress
-);
-
+/* ---------- MEMO ---------- */
+document.querySelectorAll(".memo").forEach((m,i)=>{
+  m.value = localStorage.getItem("memo-"+i) || "";
+  m.addEventListener("input",()=>{
+    localStorage.setItem("memo-"+i,m.value);
+  });
 });
 
-updateProgress();
+/* ---------- COST ---------- */
+const food = document.getElementById("food");
+const ticket = document.getElementById("ticket");
+const fuel = document.getElementById("fuel");
+const total = document.getElementById("total");
 
-const memo =
-document.getElementById("memo");
+function calc(){
 
-memo.value =
-localStorage.getItem(
-"jejuMemo"
-) || "";
+  const sum =
+    (Number(food.value)||0) +
+    (Number(ticket.value)||0) +
+    (Number(fuel.value)||0);
 
-memo.addEventListener(
-"input",
-()=>{
+  total.textContent = "총 " + sum.toLocaleString() + "원";
 
-localStorage.setItem(
-"jejuMemo",
-memo.value
-);
-
+  localStorage.setItem("cost", JSON.stringify({
+    food:food.value,
+    ticket:ticket.value,
+    fuel:fuel.value
+  }));
 }
-);
+
+const cost = JSON.parse(localStorage.getItem("cost")||"{}");
+
+food.value = cost.food||"";
+ticket.value = cost.ticket||"";
+fuel.value = cost.fuel||"";
+
+food.addEventListener("input",calc);
+ticket.addEventListener("input",calc);
+fuel.addEventListener("input",calc);
+
+calc();
 
 </script>
 
