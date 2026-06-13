@@ -1,3 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6월 제주 여행</title>
+
+<style>
+
+/* =====================
+   BASE
+===================== */
+:root{
+  --ocean:#0891b2;
+  --bg:#f0f9ff;
+  --card:#ffffff;
+  --text:#0f172a;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:system-ui,'Malgun Gothic',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* =====================
+   HERO
+===================== */
+.hero{
+  height:300px;
+  background:
+    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+}
+
+.hero h1{font-size:42px;}
+.hero p{opacity:.9;}
+
+/* =====================
+   CONTAINER
+===================== */
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:16px;
+}
+
+/* =====================
+   CARD
+===================== */
+.card{
+  background:var(--card);
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:14px;
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+}
+
+/* =====================
+   PROGRESS
+===================== */
+.progress{
+  height:12px;
+  background:#e2e8f0;
+  border-radius:999px;
+  overflow:hidden;
+  margin-top:10px;
+}
+
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#38bdf8,#0891b2);
+  transition:.3s;
+}
+
+/* =====================
+   MAP LINKS
+===================== */
+.map a{
+  display:block;
+  color:var(--ocean);
+  text-decoration:none;
+  font-weight:600;
+  margin:4px 0;
+}
+
+/* =====================
+   PLACE
+===================== */
+.day-title{
+  font-size:20px;
+  margin-bottom:10px;
+  color:var(--ocean);
+  font-weight:700;
+}
+
+.place{
+  background:linear-gradient(180deg,#ffffff,#f8fafc);
+  border-left:5px solid var(--ocean);
+  padding:14px;
+  border-radius:14px;
+  margin-top:12px;
+}
+
+.place img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-bottom:10px;
+  cursor:zoom-in;
+}
+
+.place a{
+  font-weight:700;
+  color:var(--ocean);
+  text-decoration:none;
+}
+
+/* =====================
+   INPUT
+===================== */
+label{
+  display:flex;
+  gap:8px;
+  margin-top:8px;
+  font-size:14px;
+}
+
+.memo{
+  width:100%;
+  min-height:80px;
+  margin-top:10px;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #cbd5e1;
+  resize:none;
+}
+
+/* =====================
+   FOOTER
+===================== */
+.footer{
+  text-align:center;
+  padding:40px 16px;
+  color:#64748b;
+  font-size:14px;
+}
+
+/* =====================
+   IMAGE MODAL
+===================== */
 .modal{
   display:none;
   position:fixed;
@@ -15,7 +177,6 @@
   max-width:90%;
   max-height:80%;
   border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,.5);
   animation:zoom .2s ease;
 }
 
@@ -23,3 +184,184 @@
   from{transform:scale(.8);opacity:0;}
   to{transform:scale(1);opacity:1;}
 }
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>🌴 6월 제주 여행</h1>
+    <p>바다 · 수국 · 힐링 기록</p>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- PROGRESS -->
+<div class="card">
+  <h3 id="progressText">0 / 0 완료</h3>
+  <div class="progress">
+    <div id="progressFill" class="progress-fill"></div>
+  </div>
+</div>
+
+<!-- MAP -->
+<div class="card">
+  <h3>🗺 제주 이동</h3>
+  <div class="map">
+
+    <a href="https://map.kakao.com/link/search/함덕해수욕장">함덕</a>
+    <a href="https://map.kakao.com/link/search/종달리수국길">종달리 수국길</a>
+    <a href="https://map.kakao.com/link/search/광치기해변">광치기해변</a>
+    <a href="https://map.kakao.com/link/search/휴애리">휴애리</a>
+    <a href="https://map.kakao.com/link/search/수월봉">수월봉</a>
+    <a href="https://map.kakao.com/link/search/한담해안산책로">한담</a>
+
+  </div>
+</div>
+
+<!-- DAY -->
+<div class="card">
+
+<div class="day-title">🌊 DAY 2</div>
+
+<div class="place">
+
+<img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21">
+
+<a href="https://map.kakao.com/link/search/함덕해수욕장" target="_blank">
+함덕 서우봉
+</a>
+
+<label>
+<input type="checkbox" class="visit"> 방문 완료
+</label>
+
+<textarea class="memo" placeholder="후기"></textarea>
+
+</div>
+
+<div class="place">
+
+<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+
+<a href="https://map.kakao.com/link/search/제주4.3평화공원">
+제주 4·3 평화공원
+</a>
+
+<label>
+<input type="checkbox" class="visit"> 방문 완료
+</label>
+
+<textarea class="memo"></textarea>
+
+</div>
+
+</div>
+
+<!-- DAY 3 -->
+<div class="card">
+
+<div class="day-title">🌺 DAY 3</div>
+
+<div class="place">
+
+<img src="https://images.unsplash.com/photo-1520975954732-35dd22299614">
+
+<a href="https://map.kakao.com/link/search/종달리수국길">
+종달리 수국길
+</a>
+
+<label>
+<input type="checkbox" class="visit"> 방문 완료
+</label>
+
+<textarea class="memo"></textarea>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+🌴 제주 여행 기록 · 자동 저장
+</div>
+
+<!-- IMAGE MODAL -->
+<div class="modal" id="modal" onclick="closeModal()">
+  <img id="modalImg">
+</div>
+
+<script>
+
+const checks = document.querySelectorAll(".visit");
+const fill = document.getElementById("progressFill");
+const text = document.getElementById("progressText");
+
+/* =====================
+   PROGRESS
+===================== */
+function update(){
+
+  const total = checks.length || 1;
+  const done = [...checks].filter(c=>c.checked).length;
+
+  fill.style.width = (done/total)*100 + "%";
+  text.textContent = `${done} / ${checks.length} 완료`;
+
+  localStorage.setItem("jeju-checks",
+    JSON.stringify([...checks].map(c=>c.checked))
+  );
+}
+
+/* =====================
+   RESTORE CHECKS
+===================== */
+const saved = JSON.parse(localStorage.getItem("jeju-checks")||"[]");
+
+checks.forEach((c,i)=>{
+  c.checked = saved[i] || false;
+  c.addEventListener("change",update);
+});
+
+/* =====================
+   MEMO
+===================== */
+document.querySelectorAll(".memo").forEach((m,i)=>{
+  m.value = localStorage.getItem("memo-"+i) || "";
+  m.addEventListener("input",()=>{
+    localStorage.setItem("memo-"+i, m.value);
+  });
+});
+
+/* =====================
+   IMAGE ZOOM
+===================== */
+function openModal(src){
+  const modal = document.getElementById("modal");
+  const img = document.getElementById("modalImg");
+  img.src = src;
+  modal.style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("modal").style.display = "none";
+}
+
+document.querySelectorAll(".place img").forEach(img=>{
+  img.addEventListener("click",()=>{
+    openModal(img.src);
+  });
+});
+
+update();
+
+</script>
+
+</body>
+</html>
